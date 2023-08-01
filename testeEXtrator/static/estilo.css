@@ -1,0 +1,74 @@
+/* Definição do estilo geral da página */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilo do cabeçalho */
+header {
+    background-color: #0041A0;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+/* Estilo do painel de informações */
+.panel {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.panel h2 {
+    color: #008000;
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.panel p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo da lista de faturas por UC */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}
+
+li span {
+    font-weight: bold;
+}
+
+/* Estilo do rodapé */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #0041A0;
+    color: #fff;
+}
+
+footer p {
+    margin: 0;
+}

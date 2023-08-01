@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulário do Cliente</title>
+</head>
+<body>
+    <h1>Formulário do Cliente</h1>
+    <form action="/" method="post">
+        <label for="mes_referencia">Mês de referência:</label>
+        <input type="text" name="mes_referencia" required><br>
+        <label for="data_vencimento">Data de Vencimento:</label>
+        <input type="text" name="data_vencimento" required><br>
+        <h2>Energia Elétrica</h2>
+        <label for="energia_eletrica_kwh">kWh:</label>
+        <input type="number" name="energia_eletrica_kwh" step="0.01" required><br>
+        <label for="energia_eletrica_preco_unit">Preço Unit:</label>
+        <input type="number" name="energia_eletrica_preco_unit" step="0.01" required><br>
+        <h2>Energia injetada HFP</h2>
+        <label for="energia_injetada_kwh">kWh:</label>
+        <input type="number" name="energia_injetada_kwh" step="0.01" required><br>
+        <label for="energia_injetada_preco_unit">Preço Unit:</label>
+        <input type="number" name="energia_injetada_preco_unit" step="0.01" required><br>
+        <h2>En comp. s/ ICMS</h2>
+        <label for="en_comp_s_icms_kwh">kWh:</label>
+        <input type="number" name="en_comp_s_icms_kwh" step="0.01" required><br>
+        <label for="en_comp_s_icms_preco_unit">Preço Unit:</label>
+        <input type="number" name="en_comp_s_icms_preco_unit" step="0.01" required><br>
+        <label for="contrib_ilum_publica_mun">Contrib Ilum Publica Municipal (R$):</label>
+        <input type="number" name="contrib_ilum_publica_mun" step="0.01" required><br>
+        <input type="submit" value="Calcular">
+    </form>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='estilo.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+    </header>
+
+    <div class="container">
+        <div class="panel">
+            <h2>Informações Gerais</h2>
+            <p>Total de Faturas: {{ total_faturas }}</p>
+            <p>Total de Páginas: {{ total_paginas }}</p>
+        </div>
+
+        <div class="panel">
+            <h2>Faturas por UC</h2>
+            <ul>
+                {% for uc, quantidade in faturas_por_uc.items() %}
+                <li><span>UC:</span> {{ uc }}, <span>Quantidade:</span> {{ quantidade }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>Dashboard criado com Flask e Python</p>
+    </footer>
+</body>
+</html>

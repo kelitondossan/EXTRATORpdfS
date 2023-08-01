@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Histórico de Faturas</title>
+</head>
+<body>
+    <h1>Histórico de Faturas</h1>
+    {% if historico_faturas %}
+        <table>
+            <tr>
+                <th>UC</th>
+                <th>Mês de Referência</th>
+                <th>Valor (R$)</th>
+            </tr>
+            {% for uc, faturas_uc in historico_faturas.items() %}
+                {% for mes_referencia, valor in faturas_uc.items() %}
+                    <tr>
+                        <td>{{ uc }}</td>
+                        <td>{{ mes_referencia }}</td>
+                        <td>{{ valor }}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Não há histórico de faturas disponível.</p>
+    {% endif %}
+</body>
+</html>
