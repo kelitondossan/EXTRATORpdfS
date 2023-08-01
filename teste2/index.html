@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Extrair Texto dos PDFs</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #4CAF50, #007BFF);
+      color: #fff;
+    }
+    .chart-container {
+      margin: auto;
+      width: 400px;
+      height: 300px;
+    }
+    .chart-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #fff;
+      font-size: 24px;
+    }
+    .pdf-list-item {
+      cursor: pointer;
+    }
+    .pdf-list-item:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <h1 class="text-center">Dashboard</h1>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h2>PDFs Disponíveis:</h2>
+        <ul id="pdfList"></ul>
+      </div>
+      <div class="col-md-6">
+        <h2>Texto do PDF Selecionado:</h2>
+        <div id="pdfText"></div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <h2 class="text-center">Gráfico de Barras</h2>
+        <div class="chart-container">
+          <i class="chart-icon fas fa-chart-bar"></i>
+          <canvas id="barChart"></canvas>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h2 class="text-center">Gráfico de Linha - Energia KW</h2>
+        <div class="chart-container">
+          <i class="chart-icon fas fa-chart-line"></i>
+          <canvas id="lineChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script>
+    async function getPDFsList() {
+      try {
+        const response = await axios.get('/files');
+        const pdfs = response.data;
+        const pdfList = document.getElementById('pdfList');
+
+        pdfs.forEach(pdf => {
+          const listItem = document.createElement('li');
+          listItem.className = 'pdf-list-item';
+          listItem.textContent = pdf;
+          listItem.onclick = () => getPDFText(pdf);
+          pdfList.appendChild(listItem);
+        });
+      } catch (error) {
+        console.error('Erro ao obter lista de PDFs:', error);
+      }
+    }
+
+    async function getPDFText(filename) {
+      try {
+        const response = await axios.get(`/file/${filename}`);
+        const data = response.data;
+        document.getElementById('pdfText').innerText = data.text;
+
+        // Enviar os dados extraídos do PDF para o servidor
+        sendDataToServer(data.text);
+      } catch (error) {
+        console.error('Erro ao obter texto do PDF:', error);
+      }
+    }
+
+    async function sendDataToServer(pdfData) {
+      try {
+        await axios.post('/insert-data', { pdfData });
+        console.log('Dados enviados para o servidor com sucesso.');
+      } catch (error) {
+        console.error('Erro ao enviar dados para o servidor:', error);
+      }
+    }
+
+    getPDFsList();
+
+    const barChartData = {
+      labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+      datasets: [{
+        label: 'CONSUMO',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+        data: [65, 59, 80, 81, 56, 55],
+      }]
+    };
+
+    const barChartOptions = {
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    };
+
+    const barChart = new Chart(document.getElementById('barChart'), {
+      type: 'bar',
+      data: barChartData,
+      options: barChartOptions
+    });
+
+    const lineChartData = {
+      labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+      datasets: [{
+        label: 'Energia KW',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+        data: [150, 160, 140, 170, 155, 165],
+      }]
+    };
+
+    const lineChartOptions = {
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    };
+
+    const lineChart = new Chart(document.getElementById('lineChart'), {
+      type: 'line',
+      data: lineChartData,
+      options: lineChartOptions
+    });
+  </script>
+</body>
+</html>

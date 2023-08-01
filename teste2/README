@@ -1,0 +1,44 @@
+Aqui está o README com as informações para documentação do projeto:
+
+# Extrair Texto dos PDFs
+
+Este projeto é um dashboard que permite extrair texto de arquivos PDF, exibir a lista de PDFs disponíveis, e mostrar gráficos de barras e linhas usando os dados extraídos.
+
+## Funcionalidades
+
+1. Exibir lista de PDFs disponíveis.
+2. Exibir o texto do PDF selecionado.
+3. Extrair o texto do PDF e enviar os dados extraídos para o servidor.
+4. Exibir gráfico de barras com dados de exemplo.
+5. Exibir gráfico de linha com dados de exemplo.
+6. Inserir os dados extraídos do PDF em um banco de dados MySQL.
+
+## Tecnologias Utilizadas
+
+- Frontend:
+  - HTML
+  - CSS (Bootstrap para estilização)
+  - JavaScript (Chart.js para gráficos, Axios para requisições HTTP)
+
+- Backend:
+  - Node.js (Express para o servidor web)
+  - PDF.js para extração de texto dos PDFs
+  - MySQL para banco de dados
+
+## Como Executar o Projeto
+
+1. Clone o repositório para a sua máquina local.
+2. Certifique-se de ter o Node.js e o MySQL instalados em seu computador.
+3. Crie um banco de dados MySQL chamado "faturas" e uma tabela "faturas" com um campo "conteudo_pdf" do tipo TEXT.
+4. No terminal, navegue até a pasta do projeto e execute o comando `npm install` para instalar as dependências do projeto.
+5. Execute o servidor backend com o comando `NODEMON SERVE.JS` no terminal.
+6. Abra outro terminal e vá para a pasta "frontend".
+7. Execute o servidor frontend com o comando `npm start` no terminal.
+8. Acesse o projeto em seu navegador através do endereço `http://localhost:3333\INDEX.HTML`.
+
+## Observações
+
+- Os arquivos PDF devem ser colocados na pasta "Faturas" no diretório raiz do projeto para que sejam exibidos na lista de PDFs disponíveis.
+- Os gráficos exibidos são apenas exemplos com dados fictícios, você pode substituí-los pelos dados extraídos dos PDFs ou por outros dados relevantes para o seu projeto.
+
+Espero que essas informações sejam úteis para documentar o projeto. Se você tiver alguma dúvida ou precisar de mais ajuda, sinta-se à vontade para perguntar!
